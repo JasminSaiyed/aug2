@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-catalog
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product-catalog
+  template:
+    metadata:
+      labels:
+        app: product-catalog
+    spec:
+      containers:
+        - name: product-catalog
+          image: yourusername/product-catalog:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: microservices-config
+            - secretRef:
+                name: microservices-secrets

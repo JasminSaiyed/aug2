@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front-end
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+        - name: front-end
+          image: yourusername/front-end:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: microservices-config
+            - secretRef:
+                name: microservices-secrets

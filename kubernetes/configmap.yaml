@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservices-config
+data:
+  DATABASE_URL: "postgres://user:password@hostname:port/dbname"
+  OTHER_CONFIG: "value"
